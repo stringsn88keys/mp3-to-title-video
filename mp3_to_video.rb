@@ -12,15 +12,17 @@ def squished_filename(filepath)
 end
 
 def title_text(filename)
-  sub_description = filename.split('-')[1]
-  expanded_sub_description = case sub_description
-                             when /And/
-                               sub_description.gsub(/(.*)And(.*)/,'\1 with \2 accompaniment')
-                             when /Over/
-                               sub_description.gsub(/(.*)Over(.*)/,'\1 primary with \2 voice and accompaniment')
+  sub_desc = filename.split('-')[1]
+  full_sub_desc = case sub_desc
+                  when /And/
+                    sub_desc.gsub(/(.*)And(.*)/,
+                                  '\1 with \2 accompaniment')
+                  when /Over/
+                    sub_desc.gsub(/(.*)Over(.*)/,
+                                  '\1 primary with \2 voice and accompaniment')
 
-                             end
-  "#{TITLE}\n#{expanded_sub_description}"
+                  end
+  "#{TITLE}\n#{full_sub_desc}"
 end
 
 def create_title_card(file)
